@@ -1,0 +1,13 @@
+{
+    "onetree_final_price": {
+        "column": {
+            "id": true,
+            "customer_name": true,
+            "sku": true,
+            "final_price": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

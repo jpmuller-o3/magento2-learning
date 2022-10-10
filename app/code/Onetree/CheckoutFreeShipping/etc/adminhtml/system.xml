@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="onetree" translate="label" class="a-custom-css-class-to-style-this-tab" sortOrder="10">
+            <label>Onetree</label>
+        </tab>
+
+        <section id="freeshipping" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="10" translate="label">
+            <label>Freeshipping</label>
+            <tab>onetree</tab>
+            <resource>Onetree_CheckoutFreeShipping::config</resource>
+
+            <group id="freeshipping" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Freeshipping</label>
+                <comment>An additional comment helping users to understand the effect when configuring the fields defined in this group.</comment>
+
+                <field id="value" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Value</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="onetree" translate="label" class="a-custom-css-class-to-style-this-tab" sortOrder="10">
+            <label>Onetree</label>
+        </tab>
+
+        <section id="skuwatcher" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="10" translate="label">
+            <label>Sku price watcher</label>
+            <tab>onetree</tab>
+            <resource>Onetree_ClientProductFinalPrice::config</resource>
+
+            <group id="skuwatcher" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Sku price watcher</label>
+                <comment>Add sku codes separated with comma to save the final price in cart for each customer</comment>
+
+                <field id="value" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sku codes [code1, code2, code3...]</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

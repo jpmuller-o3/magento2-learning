@@ -5,9 +5,9 @@ namespace Onetree\ClientProductFinalPrice\Plugin;
 use Magento\Catalog\Model\Product;
 use Magento\Catalog\Model\ProductRepository;
 use Magento\Checkout\Controller\Cart\Add;
-use Magento\ConfigurableProduct\Model\Product\Type\Configurable;
 use Magento\Customer\Model\Session as CustomerSession;
 use Magento\Checkout\Model\Session as CheckoutSession;
+use Magento\Framework\App\Config\ScopeConfigInterface as ScopeConfigInterfaceAlias;
 use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Onetree\ClientProductFinalPrice\Model\ProductFinalPriceFactory;
@@ -20,7 +20,8 @@ class SaveAddedProductPricePlugin
         private CheckoutSession $checkoutSession,
         private ProductFinalPriceFactory $productFinalPriceFactory,
         private ProductFinalPriceResourceModel $productFinalPriceResourceModel,
-        private ProductRepository $productRepository
+        private ProductRepository $productRepository,
+        private ScopeConfigInterfaceAlias $scopeConfig,
     )
     { }
 
@@ -44,9 +45,11 @@ class SaveAddedProductPricePlugin
         if ($this->customerSession->isLoggedIn()) {
 
             $allItems = $this->checkoutSession->getQuote()->getAllVisibleItems();
+            $skuString = $this->scopeConfig->getValue('skuwatcher/skuwatcher/value');
+            $skuCodesToWatch = strlen($skuString ?? '') ? explode(',', $skuString ) : [];
             try {
                 foreach ($allItems as $item) {
-                    if ($item->getProduct()->getId() == $params['product'] ) {
+                    if ($item->getProduct()->getId() == $params['product'] && in_array($productData->getSku(), $skuCodesToWatch)) {
                         $productFinalPriceModel = $this->productFinalPriceFactory->create();
                         $productFinalPriceModel->setData([
                             'customer_name' => $this->customerSession->getCustomer()->getName(),

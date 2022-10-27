@@ -469,6 +469,7 @@ return [
         'Fastly_Cdn' => 1,
         'Onetree_CheckoutFreeShipping' => 1,
         'Onetree_ClientProductFinalPrice' => 1,
+        'Onetree_DefaultPaymentMethod' => 1,
         'Onetree_Test' => 1,
         'PayPal_Braintree' => 1,
         'PayPal_BraintreeGraphQl' => 1,
